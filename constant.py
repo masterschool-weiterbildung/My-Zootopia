@@ -2,12 +2,21 @@ from pathlib import Path
 
 # OTHERS CONSTANTS
 
-PRODUCTION_FILE = "animals_data.json"
+JSON_FILE = "animals_data.json"
+HTML_FILE = "animals_template.html"
+NEW_HTML_FILE = "animals.html"
+NEWLINE = "\n"
 
 PACKAGE_REPOSITORY = "My-Zootopia"
 
-PRODUCTION_FILE_PATH = Path(
-    __file__).parent.parent / PACKAGE_REPOSITORY / PRODUCTION_FILE
+JSON_FILE_PATH = Path(
+    __file__).parent.parent / PACKAGE_REPOSITORY / JSON_FILE
+
+HTML_FILE_PATH = Path(
+    __file__).parent.parent / PACKAGE_REPOSITORY / HTML_FILE
+
+NEW_HTML_FILE_PATH = Path(
+    __file__).parent.parent / PACKAGE_REPOSITORY / NEW_HTML_FILE
 
 # RETURN CONSTANT
 
