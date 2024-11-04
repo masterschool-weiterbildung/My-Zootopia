@@ -11,11 +11,10 @@ def print_animals() -> None:
     Raises:
         KeyError: Skips any animal entry with missing expected keys.
     """
-    for animal in data_util.fetch_data_html(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in data_util.fetch_data_html(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
         try:
             serialize_animal(animal)
-        except KeyError as e:
+        except KeyError:
             continue
 
 
@@ -35,7 +34,7 @@ def serialize_animal(animal: dict) -> None:
     Raises:
         KeyError: If any expected keys are missing from the animal dictionary.
     """
-    var = animal[constant.CHARACTERISTICS][constant.TYPE]
+    animal[constant.CHARACTERISTICS][constant.TYPE]
     print(f"Name: {animal[constant.NAME]}")
     print(f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}")
     print(f"Location: {animal[constant.LOCATIONS][0]}")

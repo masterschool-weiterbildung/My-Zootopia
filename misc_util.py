@@ -65,8 +65,7 @@ def get_serialize_animals() -> str:
             output += f"Name: {animal[constant.NAME]}<br/>\n"
             output += f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}<br/>\n"
             output += f"Location: {animal[constant.LOCATIONS][0]}<br/>\n"
-            output += f"Type: {animal[constant.CHARACTERISTICS]
-            [constant.TYPE]}<br/>\n"
+            output += f"Type: {animal[constant.CHARACTERISTICS][constant.TYPE]}<br/>\n"
         except KeyError:
             continue
     return output
