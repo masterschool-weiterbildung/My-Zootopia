@@ -35,8 +35,8 @@ def get_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in (
+        data_util.fetch_data_json(constant.JSON_FILE_PATH))[constant.PAYLOAD]:
         try:
             var = animal[constant.CHARACTERISTICS][constant.TYPE]
             output += f"Name: {animal[constant.NAME]}\n"
@@ -67,8 +67,8 @@ def get_serialize_animals() -> str:
             var = animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
             output += f"Name: {animal[constant.NAME]}<br/>\n"
-            output += f"Diet: {animal[constant.CHARACTERISTICS]
-            [constant.DIET]}<br/>\n"
+            output += (f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}"
+                      f"<br/>\n")
             output += f"Location: {animal[constant.LOCATIONS][0]}<br/>\n"
             output += f"Type: {animal[constant.CHARACTERISTICS]
             [constant.TYPE]}<br/>\n"
@@ -98,16 +98,17 @@ def get_final_serialization_animals() -> str:
         try:
             var = animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
-            output += f"<div class='card__title'>{animal[constant.NAME]}</div>"
+            output += (f"<div class='card__title'>{animal[constant.NAME]}"
+                       f"</div>")
             output += f"<p class='card__text'>"
             output += (f"<strong>Location:</strong> "
                        f"{animal[constant.LOCATIONS][0]}<br/>")
             output += (f"<strong>Type:</strong> "
-                       f"{animal[constant.CHARACTERISTICS]
-                       [constant.TYPE]}<br/>")
+                       f"{animal[constant.CHARACTERISTICS][constant.TYPE]}"
+                       f"<br/>")
             output += (f"<strong>Diet:</strong> "
-                       f"{animal[constant.CHARACTERISTICS]
-                       [constant.DIET]}<br/>")
+                       f"{animal[constant.CHARACTERISTICS][constant.DIET]}"
+                       f"<br/>")
             output += f"</p'>"
             output += f"</li'>"
         except KeyError as e:
