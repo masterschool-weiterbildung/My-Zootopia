@@ -42,7 +42,7 @@ def get_animals() -> str:
             output += f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}\n"
             output += f"Location: {animal[constant.LOCATIONS][0]}\n"
             output += f"Type: {animal[constant.CHARACTERISTICS][constant.TYPE]}\n"
-        except KeyError as e:
+        except KeyError:
             continue
     return output
 
@@ -63,8 +63,7 @@ def get_serialize_animals() -> str:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
             output += f"Name: {animal[constant.NAME]}<br/>\n"
-            output += (f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}"
-                      "<br/>\n")
+            output += f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}<br/>\n"
             output += f"Location: {animal[constant.LOCATIONS][0]}<br/>\n"
             output += f"Type: {animal[constant.CHARACTERISTICS]
             [constant.TYPE]}<br/>\n"
@@ -93,17 +92,14 @@ def get_final_serialization_animals() -> str:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
-            output += (f"<div class='card__title'>{animal[constant.NAME]}"
-                       "</div>")
+            output += (f"<div class='card__title'>{animal[constant.NAME]}</div>")
             output += "<p class='card__text'>"
             output += (f"<strong>Location:</strong> "
                        f"{animal[constant.LOCATIONS][0]}<br/>")
             output += (f"<strong>Type:</strong> "
-                       f"{animal[constant.CHARACTERISTICS][constant.TYPE]}"
-                       "<br/>")
+                       f"{animal[constant.CHARACTERISTICS][constant.TYPE]}<br/>")
             output += (f"<strong>Diet:</strong> "
-                       f"{animal[constant.CHARACTERISTICS][constant.DIET]}"
-                       "<br/>")
+                       f"{animal[constant.CHARACTERISTICS][constant.DIET]}<br/>")
             output += "</p'>"
             output += "</li'>"
         except KeyError:
