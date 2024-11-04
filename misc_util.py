@@ -35,16 +35,13 @@ def get_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in \
-            (data_util.fetch_data_json(constant.JSON_FILE_PATH))[constant.PAYLOAD]:
+    for animal in (data_util.fetch_data_json(constant.JSON_FILE_PATH))[constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += f"Name: {animal[constant.NAME]}\n"
-            output += f"Diet: {animal[constant.CHARACTERISTICS]
-            [constant.DIET]}\n"
+            output += f"Diet: {animal[constant.CHARACTERISTICS][constant.DIET]}\n"
             output += f"Location: {animal[constant.LOCATIONS][0]}\n"
-            output += f"Type: {animal[constant.CHARACTERISTICS]
-            [constant.TYPE]}\n"
+            output += f"Type: {animal[constant.CHARACTERISTICS][constant.TYPE]}\n"
         except KeyError as e:
             continue
     return output
@@ -61,8 +58,7 @@ def get_serialize_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
@@ -72,7 +68,7 @@ def get_serialize_animals() -> str:
             output += f"Location: {animal[constant.LOCATIONS][0]}<br/>\n"
             output += f"Type: {animal[constant.CHARACTERISTICS]
             [constant.TYPE]}<br/>\n"
-        except KeyError as e:
+        except KeyError:
             continue
     return output
 
@@ -93,8 +89,7 @@ def get_final_serialization_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
@@ -111,7 +106,7 @@ def get_final_serialization_animals() -> str:
                        "<br/>")
             output += "</p'>"
             output += "</li'>"
-        except KeyError as e:
+        except KeyError:
             continue
     return output
 
