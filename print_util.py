@@ -7,6 +7,7 @@ def print_animals() -> None:
     """
     Prints details of each animal by fetching and serializing data.
 
+
     Raises:
         KeyError: Skips any animal entry with missing expected keys.
     """
