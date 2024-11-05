@@ -26,17 +26,25 @@ def get_paramatersl(animal) -> str:
 
 def get_animal_data_from_api(animal) -> json:
     try:
-        response = requests.get(constant.ANIMALS_API_URL + get_paramatersl(animal),
-                                headers=get_headers(),
-                                verify=True,
-                                timeout=5)
+        response = requests.get(
+            constant.ANIMALS_API_URL + get_paramatersl(animal),
+            headers=get_headers(),
+            verify=True,
+            timeout=5)
 
         response.raise_for_status()
 
         if response.status_code == 200:
-            return (misc_util.result_message
-                    (True, "Animal information has been fetched successfully.",
-                     response.json()))
+            if len(response.json()) == 0:
+                return (misc_util.result_message
+                        (False,
+                         "No animal information was retrieved.",
+                         ""))
+            else:
+                return (misc_util.result_message
+                        (True,
+                         "Animal information has been fetched successfully.",
+                         response.json()))
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")

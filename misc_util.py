@@ -35,7 +35,8 @@ def get_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in (data_util.fetch_data_json(constant.JSON_FILE_PATH))[constant.PAYLOAD]:
+    for animal in (data_util.fetch_data_json(constant.JSON_FILE_PATH))[
+        constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += f"Name: {animal[constant.NAME]}\n"
@@ -58,7 +59,8 @@ def get_serialize_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
+    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
+        constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
@@ -87,11 +89,13 @@ def get_final_serialization_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
+    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
+        constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
-            output += (f"<div class='card__title'>{animal[constant.NAME]}</div>")
+            output += (
+                f"<div class='card__title'>{animal[constant.NAME]}</div>")
             output += "<p class='card__text'>"
             output += (f"<strong>Location:</strong> "
                        f"{animal[constant.LOCATIONS][0]}<br/>")
@@ -107,28 +111,44 @@ def get_final_serialization_animals() -> str:
 
 
 def get_final_serialization_from_api_animals(animal) -> str:
-
-    return_value_from_api = data_util.fetch_data_api(animal)[
-        constant.PAYLOAD]
+    return_value_from_api = data_util.fetch_data_api(animal)
 
     output = ''
-    for animal in return_value_from_api:
-        try:
-            animal[constant.CHARACTERISTICS][constant.TYPE]
-            output += '<li class="cards__item">'
-            output += (f"<div class='card__title'>{animal[constant.NAME]}</div>")
-            output += "<p class='card__text'>"
-            output += (f"<strong>Location:</strong> "
-                       f"{animal[constant.LOCATIONS][0]}<br/>")
-            output += (f"<strong>Type:</strong> "
-                       f"{animal[constant.CHARACTERISTICS][constant.TYPE]}<br/>")
-            output += (f"<strong>Diet:</strong> "
-                       f"{animal[constant.CHARACTERISTICS][constant.DIET]}<br/>")
-            output += "</p'>"
-            output += "</li'>"
-        except KeyError:
-            continue
-    return output
+
+    if return_value_from_api[constant.RESULT]:
+        for animal in return_value_from_api[constant.PAYLOAD]:
+            try:
+                animal[constant.CHARACTERISTICS][constant.TYPE]
+                output += '<li class="cards__item">'
+                output += (
+                    f"<div class='card__title'>{animal[constant.NAME]}</div>")
+                output += "<p class='card__text'>"
+                output += (f"<strong>Location:</strong> "
+                           f"{animal[constant.LOCATIONS][0]}<br/>")
+                output += (f"<strong>Type:</strong> "
+                           f"{animal[constant.CHARACTERISTICS][constant.TYPE]}<br/>")
+                output += (f"<strong>Diet:</strong> "
+                           f"{animal[constant.CHARACTERISTICS][constant.DIET]}<br/>")
+                output += "</p'>"
+                output += "</li'>"
+            except KeyError:
+                continue
+
+        return result_message(True,
+                              f"Animal information has been fetched successfully.",
+                              output)
+
+    else:
+        output += '<li class="cards__item">'
+        output += (f" <h2 style='color: red;"
+                   f"width: 80%;font-weight: bold;background-color: yellow;"
+                   f"padding: 10px;border: 3px solid red;"
+                   f"border-radius: 5px;text-transform: uppercase;'>"
+                   f"The animal {animal}  doesn't exist.</h2>")
+        output += "</li'>"
+
+        return result_message(False,
+                              f"The animal {animal}  doesn't exist", output)
 
 
 def replace_html_content() -> str:
@@ -182,9 +202,17 @@ def replace_html_with_final_serialize_items() -> str:
     return ''.join(return_value).replace("__REPLACE_ANIMALS_INFO__",
                                          get_final_serialization_animals())
 
+
 def replace_html_from_api_items(animal) -> str:
     return_value = data_util.fetch_data_html(constant.HTML_FILE_PATH)[
         constant.PAYLOAD]
 
-    return ''.join(return_value).replace("__REPLACE_ANIMALS_INFO__",
-                                         get_final_serialization_from_api_animals(animal))
+    return_value_api = get_final_serialization_from_api_animals(
+                                             animal)
+
+    return result_message(return_value_api[constant.RESULT],
+                              return_value_api[constant.MESSAGE],
+                          ''.join(return_value).replace(
+                              "__REPLACE_ANIMALS_INFO__",
+                              return_value_api[constant.PAYLOAD])
+                          )
