@@ -106,6 +106,31 @@ def get_final_serialization_animals() -> str:
     return output
 
 
+def get_final_serialization_from_api_animals() -> str:
+
+    return_value_from_api = data_util.fetch_data_api()[
+        constant.PAYLOAD]
+
+    output = ''
+    for animal in return_value_from_api:
+        try:
+            animal[constant.CHARACTERISTICS][constant.TYPE]
+            output += '<li class="cards__item">'
+            output += (f"<div class='card__title'>{animal[constant.NAME]}</div>")
+            output += "<p class='card__text'>"
+            output += (f"<strong>Location:</strong> "
+                       f"{animal[constant.LOCATIONS][0]}<br/>")
+            output += (f"<strong>Type:</strong> "
+                       f"{animal[constant.CHARACTERISTICS][constant.TYPE]}<br/>")
+            output += (f"<strong>Diet:</strong> "
+                       f"{animal[constant.CHARACTERISTICS][constant.DIET]}<br/>")
+            output += "</p'>"
+            output += "</li'>"
+        except KeyError:
+            continue
+    return output
+
+
 def replace_html_content() -> str:
     """
     Replaces a placeholder in an HTML template with plain-text animal data.
@@ -153,5 +178,13 @@ def replace_html_with_final_serialize_items() -> str:
     """
     return_value = data_util.fetch_data_html(constant.HTML_FILE_PATH)[
         constant.PAYLOAD]
+
     return ''.join(return_value).replace("__REPLACE_ANIMALS_INFO__",
                                          get_final_serialization_animals())
+
+def replace_html_from_api_items() -> str:
+    return_value = data_util.fetch_data_html(constant.HTML_FILE_PATH)[
+        constant.PAYLOAD]
+
+    return ''.join(return_value).replace("__REPLACE_ANIMALS_INFO__",
+                                         get_final_serialization_from_api_animals())

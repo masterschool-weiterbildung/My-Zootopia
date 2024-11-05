@@ -1,10 +1,12 @@
 import json
 from pathlib import WindowsPath
 
+import api_util
 import misc_util
 
 cached_data_json = None
 cached_data_html = None
+cached_data_api = None
 
 
 def load_data_json(file_path: WindowsPath) -> misc_util.result_message:
@@ -125,6 +127,13 @@ def fetch_data_html(file_path: WindowsPath) -> misc_util.result_message:
     if cached_data_html is None:
         cached_data_html = load_data_html(file_path)
     return cached_data_html
+
+
+def fetch_data_api() -> misc_util.result_message:
+    global cached_data_api
+    if cached_data_api is None:
+        cached_data_api = api_util.get_animal_data_from_api()
+    return cached_data_api
 
 
 def write_data(details: str,

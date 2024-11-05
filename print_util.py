@@ -52,5 +52,5 @@ def generate_animals_web() -> None:
     Raises:
         IOError: If the file at the specified path cannot be written to.
     """
-    data_util.write_data(misc_util.replace_html_with_final_serialize_items(),
+    data_util.write_data(misc_util.replace_html_from_api_items(),
                          constant.NEW_HTML_FILE_PATH)
