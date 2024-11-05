@@ -129,10 +129,10 @@ def fetch_data_html(file_path: WindowsPath) -> misc_util.result_message:
     return cached_data_html
 
 
-def fetch_data_api() -> misc_util.result_message:
+def fetch_data_api(animal) -> misc_util.result_message:
     global cached_data_api
     if cached_data_api is None:
-        cached_data_api = api_util.get_animal_data_from_api()
+        cached_data_api = api_util.get_animal_data_from_api(animal)
     return cached_data_api
 
 

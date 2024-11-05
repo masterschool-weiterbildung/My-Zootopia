@@ -20,13 +20,13 @@ def get_headers() -> str:
     return headers
 
 
-def get_paramatersl() -> str:
-    return f"?name=Fox"
+def get_paramatersl(animal) -> str:
+    return f"?name={animal}"
 
 
-def get_animal_data_from_api() -> json:
+def get_animal_data_from_api(animal) -> json:
     try:
-        response = requests.get(constant.ANIMALS_API_URL + get_paramatersl(),
+        response = requests.get(constant.ANIMALS_API_URL + get_paramatersl(animal),
                                 headers=get_headers(),
                                 verify=True,
                                 timeout=5)
