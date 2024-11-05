@@ -41,7 +41,7 @@ def serialize_animal(animal: dict) -> None:
     print(f"Type: {animal[constant.CHARACTERISTICS][constant.TYPE]}")
 
 
-def generate_animals_web() -> None:
+def generate_animals_web(animal) -> misc_util.result_message:
     """
     Generates an HTML file with serialized animal data by processing
     and formatting raw HTML content.
@@ -52,5 +52,8 @@ def generate_animals_web() -> None:
     Raises:
         IOError: If the file at the specified path cannot be written to.
     """
-    data_util.write_data(misc_util.replace_html_from_api_items(),
+    return data_util.write_data(misc_util.replace_html_from_api_items(animal),
                          constant.NEW_HTML_FILE_PATH)
+
+def print_animal_successfully_fetched():
+    print("Website was successfully generated to the file animals.html.")

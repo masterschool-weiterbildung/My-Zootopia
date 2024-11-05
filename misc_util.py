@@ -106,9 +106,9 @@ def get_final_serialization_animals() -> str:
     return output
 
 
-def get_final_serialization_from_api_animals() -> str:
+def get_final_serialization_from_api_animals(animal) -> str:
 
-    return_value_from_api = data_util.fetch_data_api()[
+    return_value_from_api = data_util.fetch_data_api(animal)[
         constant.PAYLOAD]
 
     output = ''
@@ -182,9 +182,9 @@ def replace_html_with_final_serialize_items() -> str:
     return ''.join(return_value).replace("__REPLACE_ANIMALS_INFO__",
                                          get_final_serialization_animals())
 
-def replace_html_from_api_items() -> str:
+def replace_html_from_api_items(animal) -> str:
     return_value = data_util.fetch_data_html(constant.HTML_FILE_PATH)[
         constant.PAYLOAD]
 
     return ''.join(return_value).replace("__REPLACE_ANIMALS_INFO__",
-                                         get_final_serialization_from_api_animals())
+                                         get_final_serialization_from_api_animals(animal))
