@@ -1,6 +1,6 @@
 # My Awesome Project
 
-This project does amazing things and solves all your problems!
+This project is a requirement in masterschool weiterbeldung
 
 ## Installation
 
