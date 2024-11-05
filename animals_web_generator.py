@@ -8,6 +8,9 @@ def main():
 
     if result[constant.RESULT]:
         print_util.print_animal_successfully_fetched()
+    else:
+        print_util.print_animal_un_successfully_fetched()
+
 
 
 if __name__ == '__main__':
