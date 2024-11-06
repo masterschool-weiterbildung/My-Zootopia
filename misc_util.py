@@ -148,7 +148,7 @@ def get_final_serialization_from_api_animals(animal: str) -> str:
                 continue
 
         return result_message(True,
-                              f"Animal information has been fetched successfully.",
+                              "Animal information has been fetched successfully.",
                               output)
 
     else:
