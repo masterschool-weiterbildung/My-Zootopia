@@ -35,8 +35,7 @@ def get_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in (data_util.fetch_data_json(constant.JSON_FILE_PATH))[
-        constant.PAYLOAD]:
+    for animal in (data_util.fetch_data_json(constant.JSON_FILE_PATH))[constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += f"Name: {animal[constant.NAME]}\n"
@@ -59,8 +58,7 @@ def get_serialize_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
@@ -89,8 +87,7 @@ def get_final_serialization_animals() -> str:
         KeyError: Skips any iteration with missing type
     """
     output = ''
-    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in data_util.fetch_data_json(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
         try:
             animal[constant.CHARACTERISTICS][constant.TYPE]
             output += '<li class="cards__item">'
@@ -156,10 +153,10 @@ def get_final_serialization_from_api_animals(animal: str) -> str:
 
     else:
         output += '<li class="cards__item">'
-        output += (f" <h2 style='color: red;"
-                   f"width: 80%;font-weight: bold;background-color: yellow;"
-                   f"padding: 10px;border: 3px solid red;"
-                   f"border-radius: 5px;text-transform: uppercase;'>"
+        output += (" <h2 style='color: red;"
+                   "width: 80%;font-weight: bold;background-color: yellow;"
+                   "padding: 10px;border: 3px solid red;"
+                   "border-radius: 5px;text-transform: uppercase;'>"
                    f"The animal {animal}  doesn't exist.</h2>")
         output += "</li'>"
 
@@ -219,7 +216,7 @@ def replace_html_with_final_serialize_items() -> str:
                                          get_final_serialization_animals())
 
 
-def replace_html_from_api_items(animal: str) -> str:
+def replace_html_from_api_items(animal: str) -> dict:
     """
     Replaces a placeholder in an HTML template with animal data fetched from the API.
 
@@ -234,7 +231,7 @@ def replace_html_from_api_items(animal: str) -> str:
         into the HTML template.
 
     Returns:
-        str: The HTML content with the animal information inserted at the
+        dict: The HTML content with the animal information inserted at the
         placeholder location.
     """
     return_value = data_util.fetch_data_html(constant.HTML_FILE_PATH)[
