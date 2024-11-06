@@ -50,11 +50,3 @@ def get_animal_data_from_api(animal) -> json:
         print(f"An error occurred: {e}")
     except ValueError as e:
         print("Error parsing JSON response:", e)
-
-
-def main():
-    print(get_animal_data_from_api())
-
-
-if __name__ == '__main__':
-    main()
