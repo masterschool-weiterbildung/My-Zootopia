@@ -110,7 +110,23 @@ def get_final_serialization_animals() -> str:
     return output
 
 
-def get_final_serialization_from_api_animals(animal) -> str:
+def get_final_serialization_from_api_animals(animal: str) -> str:
+    """
+    Fetches animal data from the API and returns a serialized HTML string.
+
+    This function retrieves animal data using data_util.fetch_data_api(animal)`.
+    If data is returned successfully, it processes the animal information and
+    formats it into an HTML list item for display, showing details like
+    location, type, and diet. If the data is not found, it returns an HTML
+    message indicating that the animal does not exist.
+
+    Parameter:
+        animal (str): The name of the animal to fetch data for.
+
+    Returns:
+        str: A string containing HTML-formatted animal information
+             or a message indicating that the animal doesn't exist.
+    """
     return_value_from_api = data_util.fetch_data_api(animal)
 
     output = ''
@@ -203,15 +219,32 @@ def replace_html_with_final_serialize_items() -> str:
                                          get_final_serialization_animals())
 
 
-def replace_html_from_api_items(animal) -> str:
+def replace_html_from_api_items(animal: str) -> str:
+    """
+    Replaces a placeholder in an HTML template with animal data fetched from the API.
+
+    This function loads an HTML template from a specified file path, fetches
+    animal data from the API using get_final_serialization_from_api_animals(animal)`,
+    and replaces the placeholder (`__REPLACE_ANIMALS_INFO__`) in the template
+    with the serialized animal information. The resulting HTML string is then
+    returned.
+
+    Parameter:
+        animal (str): The name of the animal whose data will be inserted
+        into the HTML template.
+
+    Returns:
+        str: The HTML content with the animal information inserted at the
+        placeholder location.
+    """
     return_value = data_util.fetch_data_html(constant.HTML_FILE_PATH)[
         constant.PAYLOAD]
 
     return_value_api = get_final_serialization_from_api_animals(
-                                             animal)
+        animal)
 
     return result_message(return_value_api[constant.RESULT],
-                              return_value_api[constant.MESSAGE],
+                          return_value_api[constant.MESSAGE],
                           ''.join(return_value).replace(
                               "__REPLACE_ANIMALS_INFO__",
                               return_value_api[constant.PAYLOAD])
