@@ -69,7 +69,7 @@ def get_animal_data_from_api(animal: str) -> json:
             verify=True,  # verify SSL Certificates
             timeout=5)  # 5 seconds timeout
 
-        response.raise_for_status() # Raises HTTPError for bad responses
+        response.raise_for_status()  # Raises HTTPError for bad responses
 
         if response.status_code == 200:
             if len(response.json()) == 0:
