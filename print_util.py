@@ -12,8 +12,7 @@ def print_animals() -> None:
     Raises:
         KeyError: Skips any animal entry with missing expected keys.
     """
-    for animal in data_util.fetch_data_html(constant.JSON_FILE_PATH)[
-        constant.PAYLOAD]:
+    for animal in data_util.fetch_data_html(constant.JSON_FILE_PATH)[constant.PAYLOAD]:
         try:
             serialize_animal(animal)
         except KeyError:
