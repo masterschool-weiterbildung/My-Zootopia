@@ -1,8 +1,8 @@
-import print_util
+import data_fetcher
 
 
 def main():
-    print_util.generate_animals_web()
+    data_fetcher.fetch_data()
 
 
 if __name__ == '__main__':

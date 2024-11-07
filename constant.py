@@ -18,6 +18,11 @@ HTML_FILE_PATH = Path(
 NEW_HTML_FILE_PATH = Path(
     __file__).parent.parent / PACKAGE_REPOSITORY / NEW_HTML_FILE
 
+
+# ANIMALS API
+
+ANIMALS_API_URL = "https://api.api-ninjas.com/v1/animals"
+
 # RETURN CONSTANT
 
 RESULT = "result"
