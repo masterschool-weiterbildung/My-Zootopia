@@ -1,3 +1,5 @@
+import requests
+
 import constant
 import data_util
 
@@ -124,7 +126,10 @@ def get_final_serialization_from_api_animals(animal: str) -> str:
         str: A string containing HTML-formatted animal information
              or a message indicating that the animal doesn't exist.
     """
-    return_value_from_api = data_util.fetch_data_api(animal)
+    try:
+        return_value_from_api = data_util.fetch_data_api(animal)
+    except Exception:
+        raise requests.exceptions.RequestException
 
     output = ''
 

@@ -85,6 +85,6 @@ def get_animal_data_from_api(animal: str) -> json:
                          response.json()))
 
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        raise requests.exceptions.RequestException
     except ValueError as e:
-        print("Error parsing JSON response:", e)
+        raise ValueError
