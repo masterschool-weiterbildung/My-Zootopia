@@ -1,4 +1,4 @@
-# Animal Data Fetcher
+# Animal Data Fetcher with external API
 
 ## Overview
 This Python project fetches animal data from an external API. It retrieves information based on user input and handles errors gracefully. The project utilizes environment variables for API key security and includes caching mechanisms for efficiency.
